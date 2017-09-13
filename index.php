@@ -16,6 +16,7 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
+'gateway.login-dev.192.168.99.100.nip.io',
    'gateway.192.168.99.100.nip.io',
    'gateway.bank-dev.192.168.99.100.nip.io',
 );
@@ -55,7 +56,7 @@ if (ltrim($host, 'gateway.') == $origin_domain) {
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
- // $redirect_destination = sso_redirect_url($network[0], !empty($https));
+  $redirect_destination = sso_redirect_url($network[0], !empty($https));
 }
 else {
   sso_create_cookie($_GET['op']);
