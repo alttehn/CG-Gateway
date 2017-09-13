@@ -17,6 +17,7 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
   'login-dev.192.168.99.100.nip.io',
+  'bank-dev.192.168.99.100.nip.io'
 );
 
 // An array of network domain names. The keys are potential origin host names
@@ -25,7 +26,7 @@ $network = array(
 // $domains = array();
 
 // Enable HTTPS for all redirect URLs.
- $https = true;
+ $https = false;
 
 // Enable adding the domain name to the cookie name.
  $cookie_name_strict = true;
