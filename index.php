@@ -55,7 +55,7 @@ if (ltrim($host, 'gateway.') == $origin_domain) {
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
-  $redirect_destination = sso_redirect_url($network[0], !empty($https));
+ // $redirect_destination = sso_redirect_url($network[0], !empty($https));
 }
 else {
   sso_create_cookie($_GET['op']);
