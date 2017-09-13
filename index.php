@@ -18,6 +18,7 @@ if (empty($_SERVER['HTTP_HOST'])) {
 $network = array(
    'gateway.192.168.99.100.nip.io',
    'gateway.bank-dev.192.168.99.100.nip.io',
+   'gateway.login-dev.192.168.99.100.nip.io',
 );
 
 // An array of network domain names. The keys are potential origin host names
@@ -29,7 +30,7 @@ $network = array(
 // $https = true;
 
 // Enable adding the domain name to the cookie name.
- $cookie_name_strict = true;
+// $cookie_name_strict = true;
 
 // Validate the query parameters and network size.
 if (!sso_validate_query_params() || count($network) < 2) {
