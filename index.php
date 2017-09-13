@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -16,10 +17,8 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
- 'gateway.login-dev.192.168.99.100.nip.io',
-   'gateway.192.168.99.100.nip.io',
-   'gateway.bank-dev.192.168.99.100.nip.io'
-  
+ 'a.login-dev.192.168.99.100.nip.io',
+ 'a.bank-dev.192.168.99.100.nip.io',
 );
 
 // An array of network domain names. The keys are potential origin host names
@@ -31,7 +30,7 @@ $network = array(
 // $https = true;
 
 // Enable adding the domain name to the cookie name.
-// $cookie_name_strict = true;
+ $cookie_name_strict = true;
 
 // Validate the query parameters and network size.
 if (!sso_validate_query_params() || count($network) < 2) {
@@ -47,13 +46,13 @@ $origin_domain = isset($domains[$origin_host]) ? $domains[$origin_host] : $origi
 // Find the next site that needs to be visited in the $network, by removing
 // the origin site re-keying the array.
 foreach ($network as $delta => $site) {
-  if (strpos($site, $origin_domain) === 0 || strpos($site, 'gateway.' . $origin_domain) === 0) {
+  if (strpos($site, $origin_domain) === 0 || strpos($site, 'a.' . $origin_domain) === 0) {
     unset($network[$delta]);
   }
 }
 $network = array_values($network);
 
-if (ltrim($host, 'gateway.') == $origin_domain) {
+if (ltrim($host, 'a.') == $origin_domain) {
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
@@ -63,7 +62,7 @@ else {
   sso_create_cookie($_GET['op']);
 
   foreach ($network as $delta => $site) {
-    if (strpos($site, $host) === 0 || strpos($site, 'gateway.' . $host) === 0) {
+    if (strpos($site, $host) === 0 || strpos($site, 'a.' . $host) === 0) {
       $current_site_delta = $delta;
       break;
     }
@@ -141,7 +140,7 @@ function sso_create_cookie($operation) {
 
   $secure = !empty($GLOBALS['https']);
 
-  $domain = ltrim(strtolower($_SERVER['HTTP_HOST']), 'gateway.');
+  $domain = ltrim(strtolower($_SERVER['HTTP_HOST']), 'a.');
 
   if (!empty($GLOBALS['cookie_name_strict'])) {
     $remove .= '_' . $domain;
@@ -163,7 +162,7 @@ function sso_create_cookie($operation) {
  * @return string
  */
 function sso_redirect_url($host, $https) {
-  if (!strpos($host, '://')) {
+  if (!strpos($host, '//')) {
     $host = ($https ? 'https://' : 'http://') . $host;
   }
   $args = array(
