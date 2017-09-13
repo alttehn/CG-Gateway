@@ -173,4 +173,3 @@ function sso_redirect_url($host, $https) {
   }
   return $host . '/?' . http_build_query($args);
 }
->
