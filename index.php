@@ -18,6 +18,7 @@ if (empty($_SERVER['HTTP_HOST'])) {
 $network = array(
    'gateway.192.168.99.100.nip.io',
    'gateway.bank-dev.192.168.99.100.nip.io',
+   'gateway.login-dev.192.168.99.100.nip.io'
 );
 
 // An array of network domain names. The keys are potential origin host names
