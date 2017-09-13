@@ -50,7 +50,7 @@ foreach ($network as $delta => $site) {
 }
 $network = array_values($network);
 
-if (ltrim($host, 'a.') == $origin_domain) {
+if (ltrim($host, 'gateway.') == $origin_domain) {
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
@@ -60,7 +60,7 @@ else {
   sso_create_cookie($_GET['op']);
 
   foreach ($network as $delta => $site) {
-    if (strpos($site, $host) === 0 || strpos($site, 'a.' . $host) === 0) {
+    if (strpos($site, $host) === 0 || strpos($site, 'gateway.' . $host) === 0) {
       $current_site_delta = $delta;
       break;
     }
@@ -138,7 +138,7 @@ function sso_create_cookie($operation) {
 
   $secure = !empty($GLOBALS['https']);
 
-  $domain = ltrim(strtolower($_SERVER['HTTP_HOST']), 'a.');
+  $domain = ltrim(strtolower($_SERVER['HTTP_HOST']), 'gateway.');
 
   if (!empty($GLOBALS['cookie_name_strict'])) {
     $remove .= '_' . $domain;
