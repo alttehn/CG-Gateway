@@ -17,7 +17,7 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
- 'a.login-dev.numberonegamer.com',
+
  'a.bank-dev.numberonegamer.com',
 );
 
@@ -27,13 +27,13 @@ $network = array(
 // $domains = array();
 
 // Enable HTTPS for all redirect URLs.
-// $https = true;
+ $https = true;
 
 // Enable adding the domain name to the cookie name.
  $cookie_name_strict = true;
 
 // Validate the query parameters and network size.
-if (!sso_validate_query_params() || count($network) < 2) {
+if (!sso_validate_query_params() || count($network) < 1) {
   exit;
 }
 
