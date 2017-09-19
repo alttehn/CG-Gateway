@@ -27,7 +27,7 @@ $network = array(
 // $domains = array();
 
 // Enable HTTPS for all redirect URLs.
-// $https = true;
+ $https = true;
 
 // Enable adding the domain name to the cookie name.
  $cookie_name_strict = true;
