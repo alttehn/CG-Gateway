@@ -17,8 +17,8 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
- 'a.login-dev.192.168.99.100.nip.io',
- 'a.bank-dev.192.168.99.100.nip.io',
+ 'a.login-dev.numberonegamer.com',
+ 'a.bank-dev.numberonegamer.com',
 );
 
 // An array of network domain names. The keys are potential origin host names
@@ -27,7 +27,7 @@ $network = array(
 // $domains = array();
 
 // Enable HTTPS for all redirect URLs.
-// $https = true;
+ $https = true;
 
 // Enable adding the domain name to the cookie name.
  $cookie_name_strict = true;
@@ -56,6 +56,7 @@ if (ltrim($host, 'a.') == $origin_domain) {
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
+ // $redirect_destination = sso_redirect_url($network[0], !empty($https));
   $redirect_destination = sso_redirect_url($network[0], !empty($https));
 }
 else {
