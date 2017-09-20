@@ -72,7 +72,7 @@ else  {
   }
 
   if (!isset($current_site_delta)) {
-    trigger_error('Current site not found in network', E_USER_ERROR);
+    trigger_error('Current site'+$site+' not found in network', E_USER_ERROR);
     exit;
   }
 
