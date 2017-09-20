@@ -16,9 +16,9 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
-  'a.login-dev.numberonegamer.com',
+  'a.gateway.numberonegamer.com',
    'a.bank-dev.numberonegamer.com',
-    'a.gateway.numberonegamer.com',
+    
 
 );
 
