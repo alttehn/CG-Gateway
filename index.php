@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -17,8 +16,9 @@ if (empty($_SERVER['HTTP_HOST'])) {
 // Example url (SSO script on subdomain): "a.firstsite.com"
 // Example url (SSO script in the Drupal directory): "firstsite.com/sso.php"
 $network = array(
- 'bank-dev.numberonegamer.com/sso.php',
- 'a.gateway.numberonegamer.com',
+   'bank-dev.numberonegamer.com/sso.php',
+    'a.gateway.numberonegamer.com',
+  
 );
 
 // An array of network domain names. The keys are potential origin host names
@@ -30,10 +30,10 @@ $network = array(
  $https = true;
 
 // Enable adding the domain name to the cookie name.
- $cookie_name_strict = true;
+// $cookie_name_strict = true;
 
 // Validate the query parameters and network size.
-if (!sso_validate_query_params() || count($network) < 1) {
+if (!sso_validate_query_params() || count($network) < 2) {
   exit;
 }
 
@@ -53,13 +53,13 @@ foreach ($network as $delta => $site) {
 $network = array_values($network);
 
 if (ltrim($host, 'a.') == $origin_domain) {
+	// sso_create_cookie($_GET['op']);
   // We are on the site which has started the process.
   // No need to create the cookie, the site already handled its login / logout.
   // Start from the beginning of the redirect list.
- // $redirect_destination = sso_redirect_url($network[0], !empty($https));
   $redirect_destination = sso_redirect_url($network[0], !empty($https));
 }
-else {
+else  {
   sso_create_cookie($_GET['op']);
 
   foreach ($network as $delta => $site) {
@@ -163,7 +163,7 @@ function sso_create_cookie($operation) {
  * @return string
  */
 function sso_redirect_url($host, $https) {
-  if (!strpos($host, '//')) {
+  if (!strpos($host, '://')) {
     $host = ($https ? 'https://' : 'http://') . $host;
   }
   $args = array(
